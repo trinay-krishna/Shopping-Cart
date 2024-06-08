@@ -1,0 +1,46 @@
+
+
+.container {
+    background-color: white;
+    height: 100%;
+}
+
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+
+.categoryList {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    & button {
+        color: black;
+    }
+}
+
+.itemGrid {
+    margin-top: 7%;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit,minmax(400px, 1fr) );
+    gap: 100px;
+    color: black;
+    & li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    & div:first-of-type {
+        height: 300px;
+        width: 250px;
+        &>img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+    & div:last-of-type {
+        align-items: flex-end;
+    }
+}
