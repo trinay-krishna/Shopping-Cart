@@ -35,14 +35,14 @@ export default function Shop() {
                 {
                     categories.map(category => {
                         return <li key={category}>
-                            <button onClick={() => setCategory(category)}>{category}</button>
+                            <button onClick={() => setCategory(category)}>{category.charAt(0).toUpperCase() + category.slice(1)}</button>
                         </li>
                     })
                 }
                 </ul>
 
             </section>
-            { loading  ? <div>Loading</div> : 
+            { loading  ? <div className={styles.loading}><img src="/Loading.gif" alt="" /></div> : 
                 <ul className={styles.itemGrid}> 
                     {
                         items.map(item => {
@@ -51,9 +51,16 @@ export default function Shop() {
                                     <div>
                                         <img src={item.image} alt="" />
                                     </div>
-                                    <div>
+                                    <div className={styles.itemInfo}>
                                         <p>{item.title}</p>
                                         <p>${item.price}</p>
+                                        <p>
+                                            <button>-</button>
+                                            <input type="number" defaultValue={1} id="quantityInput"/>
+                                            <button>+</button></p>
+                                        <p>
+                                            <button>Add to Cart</button>
+                                        </p>
                                     </div>
                                 </li>
                             );

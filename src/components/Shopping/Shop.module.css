@@ -1,8 +1,9 @@
 
 
 .container {
+    position: relative;
     background-color: white;
-    height: 100%;
+    min-height: 100vh;
 }
 
 .navBar {
@@ -17,20 +18,35 @@
     gap: 15px;
     & button {
         color: black;
+        font-size: 1.3rem;
+        font-family: monospace;
+        font-weight: bold;
+        border: 2px solid rgb(243, 242, 242);
+        background-color: white;
+        border-radius: 15px;
+        padding: 10px 10px;
+        transition: transform 0.2s;
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.1);
+        }
     }
 }
 
 .itemGrid {
     margin-top: 7%;
     display: grid;
-    width: 100%;
     grid-template-columns: repeat(auto-fit,minmax(400px, 1fr) );
     gap: 100px;
     color: black;
+    padding: 50px;
     & li {
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 10px;
+        border: 2px solid rgb(243, 242, 242);
+        border-radius: 10px;
     }
     & div:first-of-type {
         height: 300px;
@@ -43,4 +59,101 @@
     & div:last-of-type {
         align-items: flex-end;
     }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.itemInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    & p:nth-child(1) {
+        font-size: 1.3rem;
+        align-self: flex-start;
+    }
+    & p:nth-child(2) {
+        font-size: 1.5rem;
+        font-weight: bold;
+        align-self: flex-start;
+    }
+    & p:nth-child(3) {
+        display: flex;
+        gap: 5px;
+        align-self: center;
+        justify-self: flex-end;
+        flex: 1;
+        & input {
+            align-self: flex-end;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            background-color: rgb(243, 243, 243);
+            border: none;
+            border-radius: 6px;
+            color: black;
+            font-size: 2rem;
+            font-family: monospace;
+            font-weight: bold;
+        }
+        & button {
+            align-self: flex-end;
+            color: black;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            background-color: white;
+            font-size: 3rem;
+            background-color: rgb(124, 211, 252);
+            cursor: pointer;
+            &:first-of-type {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            &:hover {
+                background-color: rgb(33, 170, 233);
+            }
+        }
+    }
+    & p:nth-child(4) {
+        align-self: center;
+        margin: 20px 0px 10px 0px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        & button {
+            cursor: pointer;
+            padding: 20px;
+            border: none;
+            background-color: rgb(228, 205, 0);
+            width: 80%;
+            font-size: 1.7rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 2px rgb(255, 255, 255);
+            color: black;
+            border-radius: 6px;
+            transition: transform .2s;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+
+.loading {
+    position: absolute;
+    font-size: 5rem;
+    top: 43%;
+    left: 45%;
+    color: black;
 }
