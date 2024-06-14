@@ -2,11 +2,49 @@ import { useEffect, useState } from "react";
 import styles from './Shop.module.css';
 import { Link } from "react-router-dom";
 
+function updateCart(cart) {
+    const cartString = JSON.stringify(cart);
+    localStorage.setItem('cart', cartString);
+}
+
 export default function Shop() {
     const [ items, setItems ] = useState([]);
     const [ loading, setLoading ] = useState(true);
     const [ categories, setCategories ] = useState([]);
     const [ category, setCategory ] = useState('electronics');
+    const [ cart, setCart ] = useState([]);
+
+
+
+    function updateQuantity(id, updater) {
+        const quantityInput = document.querySelector(`#${category}${id} input`);
+        const inputValue = quantityInput.value;
+        if ( updater == '+' ) {
+            quantityInput.value = +inputValue + 1;
+        } 
+        if ( updater == '-' ) {
+            if ( inputValue > 1)
+                quantityInput.value = +inputValue - 1;
+        }
+    }
+
+    function addToCart(item) {
+        const newCart = [...cart];
+        const elementIndex = newCart.findIndex((value, index, array) => value.id === item.id);
+        const quantityInput = document.querySelector(`#${category}${item.id} input`);
+        const quantity = quantityInput.value;
+        if(elementIndex == -1) {
+            newCart.push({id: item.id, name: item.title, quantity: +quantity});
+        } else {
+            newCart[elementIndex].quantity += +quantity;
+        }
+        quantityInput.value = 1;
+        setCart(newCart);
+        const popUpDiv = document.querySelector('.PopUp');
+        popUpDiv.classList.remove(`${styles.on}`);
+        void popUpDiv.offsetWidth;
+        popUpDiv.classList.add(`${styles.on}`);
+    }
 
     useEffect(() => {
         fetch(`https://fakestoreapi.com/products/category/${category}`)
@@ -26,6 +64,7 @@ export default function Shop() {
         }, []);
     return (
         <div className={styles.container}>
+            <div className="PopUp">Item Added to cart!</div>
             <header className={styles.navBar}>
                 <Link to='/'> Home </Link>
                 <a href="#"> Cart </a>
@@ -54,12 +93,13 @@ export default function Shop() {
                                     <div className={styles.itemInfo}>
                                         <p>{item.title}</p>
                                         <p>${item.price}</p>
+                                        <p id={item.category + item.id}>
+                                            <button onClick={() => updateQuantity(item.id, '-')}>-</button>
+                                            <input type="number" defaultValue={1}/>
+                                            <button onClick={() => updateQuantity(item.id, '+')}>+</button>
+                                        </p>
                                         <p>
-                                            <button>-</button>
-                                            <input type="number" defaultValue={1} id="quantityInput"/>
-                                            <button>+</button></p>
-                                        <p>
-                                            <button>Add to Cart</button>
+                                            <button onClick={() => addToCart(item)}>Add to Cart</button>
                                         </p>
                                     </div>
                                 </li>
