@@ -3,6 +3,7 @@ import styles from './Shop.module.css';
 import { Link } from "react-router-dom";
 
 function updateCart(cart) {
+
     const cartString = JSON.stringify(cart);
     localStorage.setItem('cart', cartString);
 }
@@ -12,12 +13,11 @@ export default function Shop() {
     const [ loading, setLoading ] = useState(true);
     const [ categories, setCategories ] = useState([]);
     const [ category, setCategory ] = useState('electronics');
-    const [ cart, setCart ] = useState([]);
+    const [ cart, setCart ] = useState( localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [] );
 
-
-
+    updateCart(cart);
     function updateQuantity(id, updater) {
-        const quantityInput = document.querySelector(`#${category}${id} input`);
+        const quantityInput = document.querySelector(`[data-id = "${id}"] input`);
         const inputValue = quantityInput.value;
         if ( updater == '+' ) {
             quantityInput.value = +inputValue + 1;
@@ -31,15 +31,16 @@ export default function Shop() {
     function addToCart(item) {
         const newCart = [...cart];
         const elementIndex = newCart.findIndex((value, index, array) => value.id === item.id);
-        const quantityInput = document.querySelector(`#${category}${item.id} input`);
+        const quantityInput = document.querySelector(`[data-id = "${item.id}"] input`);
         const quantity = quantityInput.value;
         if(elementIndex == -1) {
-            newCart.push({id: item.id, name: item.title, quantity: +quantity});
+            newCart.push({id: item.id, name: item.title, quantity: +quantity, image: item.image, price: item.price, });
         } else {
             newCart[elementIndex].quantity += +quantity;
         }
         quantityInput.value = 1;
         setCart(newCart);
+
         const popUpDiv = document.querySelector('.PopUp');
         popUpDiv.classList.remove(`${styles.on}`);
         void popUpDiv.offsetWidth;
@@ -66,8 +67,8 @@ export default function Shop() {
         <div className={styles.container}>
             <div className="PopUp">Item Added to cart!</div>
             <header className={styles.navBar}>
-                <Link to='/'> Home </Link>
-                <a href="#"> Cart </a>
+                <Link to='/' className={styles.Links}> <img src="/Logo.png" alt="" height="100%" /> </Link>
+                <Link to='./cart' className={styles.Links}> Cart </Link>
             </header>
             <section className={styles.categorySection}>
                 <ul className={styles.categoryList}>
@@ -93,7 +94,7 @@ export default function Shop() {
                                     <div className={styles.itemInfo}>
                                         <p>{item.title}</p>
                                         <p>${item.price}</p>
-                                        <p id={item.category + item.id}>
+                                        <p data-id = {item.id}>
                                             <button onClick={() => updateQuantity(item.id, '-')}>-</button>
                                             <input type="number" defaultValue={1}/>
                                             <button onClick={() => updateQuantity(item.id, '+')}>+</button>

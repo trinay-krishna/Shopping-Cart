@@ -23,15 +23,15 @@ export default function Home() {
                     <div>
                         <h1>Categories</h1>
                         <ul className={styles.categoryList}>
-                            <li className={styles.listItem}>
+                            <li className={styles.listItem} onClick={() => shopNow()}>
                                 <img src="/joystick.jpg" alt="" className={styles.cardImage} />
                                 <div className={styles.cardContent}>Electronics</div>
                             </li>
-                            <li className={styles.listItem}>
+                            <li className={styles.listItem} onClick={() => shopNow()}>
                                 <img src="/clothing.jpg" alt="" className={styles.cardImage} />
                                 <div className={styles.cardContent}>Clothing</div>
                             </li>
-                            <li className={styles.listItem}>
+                            <li className={styles.listItem} onClick={() => shopNow()}>
                                 <img src="/jewellery.jpg" alt="" className={styles.cardImage} />
                                 <div className={styles.cardContent}>Jewellery</div>
                             </li>

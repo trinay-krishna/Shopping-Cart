@@ -27,6 +27,8 @@
 .navBar {
     display: flex;
     justify-content: space-between;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 5px black;
     padding: 0px 20px;
 }
 
@@ -193,5 +195,20 @@ p {
 
     100% {
         top: -50px;
+    }
+}
+
+.Links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    text-decoration: none;
+    color: black;
+    text-shadow: 1px 1px black;
+    font-size: 1.2rem;
+    font-weight: bold;
+    &:last-of-type {
+        margin-right: 10px;
     }
 }

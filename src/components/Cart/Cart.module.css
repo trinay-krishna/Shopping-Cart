@@ -1,0 +1,107 @@
+.container {
+    background-color: rgb(247, 247, 247);
+    min-height: 100vh;
+    color: black;
+    width: 100vw;
+}
+
+.cartItem {
+    display: flex;
+    background-color: rgb(238, 238, 238);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px black;
+    height: 200px;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+ul {
+    padding: 0;
+}
+
+
+.totalPrice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 50px;
+    margin-left: auto;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.itemInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    color: inherit;
+    & input {
+        background-color: white;
+        border: 1px solid black;
+        color: inherit;
+        text-align: center;
+        width: 50px;
+        font-size: 1.2rem;
+    }
+    & button{
+        background-color: rgb(228, 205, 0);
+        padding: 5px 20px;
+        color: inherit;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-shadow: 1px 1px 5px white;
+        &:hover {
+            background-color: rgb(255, 230, 0);
+            cursor: pointer;
+        }
+    }
+}
+
+.cartContainer {
+    margin: 0 2%;
+}
+
+.cartTotal {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    & button {
+        color: inherit;
+        background-color: rgb(228, 205, 0);
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(255, 230, 0);
+        }
+    }
+}
+
+.navBar {
+    display: flex;
+    gap: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 5px black;
+    padding: 20px;
+}
+
+.Links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    text-decoration: none;
+    color: black;
+    text-shadow: 1px 1px black;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
